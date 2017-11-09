@@ -1,0 +1,76 @@
+/* FONTS */
+/* VARIABLES */
+/* MIXIN */
+/* MEDIA QUERY*/
+/* GENERAL */
+.col-xs-8 {
+  border-right: 1px solid gray; }
+
+/* Hero */
+.hero .btn-primary {
+  display: inline-block;
+  margin-left: 42%; }
+
+.turn-left {
+  opacity: 0;
+  line-height: 47px;
+  font-size: 32px; }
+
+/* GAME */
+.color-place {
+  background-color: #ffffff;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid gray; }
+
+.pick-color-container {
+  display: none;
+  position: absolute; }
+  .pick-color-container .picked-color {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 4px;
+    border: 1px solid gray;
+    border-radius: 3px; }
+  .pick-color-container .cross {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: #000;
+    margin: auto;
+    left: 5px;
+    transform-origin: 0; }
+    .pick-color-container .cross.top {
+      top: 5px;
+      transform: rotate(45deg); }
+    .pick-color-container .cross.bottom {
+      top: 39px;
+      transform: rotate(-45deg); }
+
+.btn-accept {
+  height: 50px; }
+
+/* Picking Color */
+[data-color="red"] {
+  background: #ff0000; }
+
+[data-color="green"] {
+  background: #00ff00; }
+
+[data-color="blue"] {
+  background: #0000ff; }
+
+[data-color="yellow"] {
+  background: #ffff13; }
+
+[data-color="black"] {
+  background: #000000; }
+
+[data-color="gray"] {
+  background: #444444; }
+
+/*# sourceMappingURL=style.css.map */
