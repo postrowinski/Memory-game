@@ -39,20 +39,43 @@ $(document).ready(function () {
         this.place3 = place3;
         this.place4 = place4;
 
-        const checkArr = [this.place1, this.place2, this.place3, this.place4];
+        let checkArr = [this.place1, this.place2, this.place3, this.place4];
+        let indexOfBlack = [];
+        let uniqueBlack = [];
+        let indexOfWhite = [];
+        let uniqueWhite = [];
 
         for (let i = 0; i < checkArr.length; i++) {
            if (checkArr[i] === this.copyComputerPick[i]) {
                this.answerSort.push('black');
-           } else if (this.copyComputerPick.includes(checkArr[i]) && (checkArr[i] !== this.copyComputerPick[i])) {
-               this.answerSort.push('white');
+               indexOfBlack.push(i);
+               uniqueBlack.push(this.copyComputerPick[i]);
            }
         }
 
-        console.log(this.copyComputerPick);
+        indexOfBlack.reverse();
 
-        this.answerSort.sort();
+        for (let i = 0; i < indexOfBlack.length; i++) {
+            checkArr.splice(indexOfBlack[i], 1);
+        }
 
+        for (let i = 0; i < checkArr.length; i++) {
+            if (this.copyComputerPick.includes(checkArr[i])) {
+                indexOfWhite.push(checkArr[i]);
+            }
+        }
+
+        $.each(indexOfWhite, function(i, el){
+            if($.inArray(el, uniqueWhite) === -1) uniqueWhite.push(el);
+        });
+
+        for (let i = 0; i < uniqueWhite.length; i++) {
+            if (!(uniqueBlack.includes(uniqueWhite[i]))) {
+                this.answerSort.push('white');
+            }
+        }
+
+        console.log(computerColorPick);
         this.answer1 = this.answerSort[0];
         this.answer2 = this.answerSort[1];
         this.answer3 = this.answerSort[2];
@@ -76,7 +99,7 @@ $(document).ready(function () {
 
     //Function which doesn't allow to click button 'Zatwierdź' until player don't set all color in row
     function checkClickConfirm() {
-        if ($('.color-is-set').length === 4) {
+        if ($('.color-is-set').length === 4 && (!$('.pick-color-container').hasClass('active'))) {
             createNewTry = true;
         }
     }
