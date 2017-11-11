@@ -2,6 +2,7 @@ $(document).ready(function () {
     let canClick = true;
     let createNewTry = false;
     let computerColorPick;
+    let youWin;
 
     const $gameContainer = $('.game').find('.container');
     const $counter = $('.counter');
@@ -95,7 +96,25 @@ $(document).ready(function () {
         return answer;
     };
 
+    function CongratulationsYouWin () {
+        const win = document.createElement('div');
+        const turn = document.querySelector('.counter').innerText;
+        win.classList.add('text-center', 'you-win');
+        win.innerHTML = `
+            Congratulations You are win in ${12 - turn} turn
+        `;
 
+        return win;
+    }
+
+
+    function win () {
+        $('.answer').last().find('.answers').each(function (index, element) {
+            if ($(element).hasClass('black')) {
+                youWin++;
+            }
+        });
+    }
 
     //Function which doesn't allow to click button 'Zatwierdź' until player don't set all color in row
     function checkClickConfirm() {
@@ -145,6 +164,7 @@ $(document).ready(function () {
         placeColor();
         checkClickConfirm();
             if (createNewTry) {
+                youWin = 0;
                 const place1 = $colorPlaceLastRow.first().data('color');
                 const place2 = $colorPlaceLastRow.first().next().data('color');
                 const place3 = $colorPlaceLastRow.last().prev().data('color');
@@ -161,9 +181,16 @@ $(document).ready(function () {
                 placeColor();
                 $(this).remove();
                 $colorPlaceLastRow.removeClass('active');
+                win();
+                if (youWin === 4) {
+                    $gameContainer.children().remove();
+                    $('.turn-left').css('opacity', 0);
+                    const youWin = new CongratulationsYouWin();
+                    $($gameContainer).append(youWin);
+                }
             }
 
-            if($counterValue < 2) {
+            if ($counterValue < 2) {
                 $gameContainer.children().remove();
                 $('.turn-left').css('opacity', 0);
             }
