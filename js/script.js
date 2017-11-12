@@ -156,7 +156,7 @@ $(document).ready(function () {
     // - when loop is complete (in this case 4 time) function return array with colors which isn't repeat
     function randomColorNoRepeat () {
         computerColorPick = [];
-        const colorPool = ['red', 'green', 'blue', 'yellow', 'black', 'gray'];
+        const colorPool = ['red', 'green', 'blue', 'yellow', 'purple', 'orange'];
         for (let i = 4; i > 0; i--) {
             const random = Math.floor(Math.random() * colorPool.length);
             const pickColor = colorPool.splice(random, 1).toString();
