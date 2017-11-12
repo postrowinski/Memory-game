@@ -3,56 +3,81 @@
 /* MIXIN */
 /* MEDIA QUERY*/
 /* GENERAL */
-.col-xs-8 {
-  border-right: 1px solid gray; }
+.clean-fix:before, .clean-fix:after {
+  display: table;
+  clear: both; }
 
 /* Hero */
-.hero .btn-primary {
-  display: inline-block;
-  margin-left: 42%; }
+.hero .hero-flex {
+  display: flex;
+  justify-content: space-around; }
 
 .turn-left {
   opacity: 0;
   line-height: 47px;
   font-size: 32px; }
+  .turn-left .counter {
+    display: inline-block;
+    width: 60px;
+    text-align: center; }
 
 /* GAME */
+.game .row {
+  padding-top: 6px; }
+  .game .row:last-of-type {
+    padding-bottom: 132px; }
+
+.color-place-container {
+  border-right: 1px solid gray; }
+
 .color-place {
   background-color: #ffffff;
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
   border-radius: 3px;
-  border: 1px solid gray; }
+  border: 1px solid gray;
+  transition: width ease 0.3s, height ease 0.3s; }
+  @media (max-width: 768px) {
+    .color-place {
+      width: 20px;
+      height: 20px; } }
+  .color-place.active {
+    height: 40px;
+    width: 40px; }
 
 .pick-color-container {
   display: none;
   position: absolute; }
   .pick-color-container .picked-color {
-    width: 50px;
-    height: 50px;
+    float: left;
+    width: 40px;
+    height: 40px;
     margin-bottom: 4px;
+    margin-right: 4px;
     border: 1px solid gray;
     border-radius: 3px; }
+  .pick-color-container .cancel-pick {
+    margin-left: 44px; }
   .pick-color-container .cross {
     position: relative;
     display: block;
-    width: 50px;
     height: 2px;
+    width: 41px;
     background: #000;
     margin: auto;
-    left: 5px;
+    left: 4px;
     transform-origin: 0; }
     .pick-color-container .cross.top {
-      top: 5px;
+      top: 3px;
       transform: rotate(45deg); }
     .pick-color-container .cross.bottom {
-      top: 39px;
+      top: 31px;
       transform: rotate(-45deg); }
 
 .btn-accept {
-  height: 50px; }
+  height: 40px; }
 
 /* Picking Color */
 [data-color="red"] {
@@ -73,13 +98,32 @@
 [data-color="gray"] {
   background: #444444; }
 
+.answers-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; }
+  @media (max-width: 768px) {
+    .answers-container {
+      height: 20px; } }
+
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 .answers {
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 2px;
   display: inline-block; }
+  @media (max-width: 768px) {
+    .answers {
+      width: 13.3333333333px;
+      height: 13.3333333333px; } }
 
 .black, .white {
-  border-radius: 3px;
   border: 1px solid gray; }
 
 .black {
@@ -88,5 +132,19 @@
 .you-win {
   font-size: 40px;
   color: red; }
+
+.flex-test {
+  display: flex;
+  align-items: center; }
+  .flex-test .color-place:first-of-type {
+    margin-left: 40%; }
+    @media (max-width: 991px) {
+      .flex-test .color-place:first-of-type {
+        margin-left: 15%; } }
+    @media (max-width: 768px) {
+      .flex-test .color-place:first-of-type {
+        margin-left: 0; } }
+  .flex-test .btn-accept {
+    margin-left: 14px; }
 
 /*# sourceMappingURL=style.css.map */

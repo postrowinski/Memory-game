@@ -20,8 +20,11 @@
         <div class="container">
             <h1 class="text-center">MasterMind</h1>
             <hr>
-            <button class="btn btn-primary btn-lg">New game</button>
-            <span class="turn-left pull-right">Moves <span class='counter'>12</span></span>
+            <div class="hero-flex">
+                <button class="btn btn-warning btn-lg">Instrukcja</button>
+                <button class="btn btn-primary btn-lg">Nowa gra</button>
+                <span class="turn-left">Ruchy <span class='counter'>12</span></span>
+            </div>
             <hr>
     </section>
     <section class="game">
@@ -29,15 +32,19 @@
         </div>
     </section>
     <div class="pick-color-container">
-        <div class="picked-color" data-color="red"></div>
-        <div class="picked-color" data-color="green"></div>
-        <div class="picked-color" data-color="blue"></div>
-        <div class="picked-color" data-color="yellow"></div>
-        <div class="picked-color" data-color="black"></div>
-        <div class="picked-color" data-color="gray"></div>
-        <div class="picked-color cancel-pick" data-color="">
-            <span class="cross top"></span>
-            <span class="cross bottom"></span>
+        <div class="pick-color-inner-container-flex">
+            <div class="picked-color" data-color="red"></div>
+            <div class="picked-color" data-color="green"></div>
+            <div class="picked-color" data-color="blue"></div>
+            <div class="clean-fix"></div>
+            <div class="picked-color" data-color="yellow"></div>
+            <div class="picked-color" data-color="black"></div>
+            <div class="picked-color" data-color="gray"></div>
+            <div class="clean-fix"></div>
+            <div class="picked-color cancel-pick" data-color="">
+                <span class="cross top"></span>
+                <span class="cross bottom"></span>
+            </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>

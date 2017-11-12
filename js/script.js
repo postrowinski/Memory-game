@@ -13,14 +13,16 @@ $(document).ready(function () {
         const row = document.createElement('div');
         row.classList.add('row');
         row.innerHTML = `
-            <div class="col-xs-8 text-center color-place-container">
-                <div class="color-place active" data-color></div>
-                <div class="color-place active" data-color></div>
-                <div class="color-place active" data-color></div>
-                <div class="color-place active" data-color></div>
-                <button class="btn btn-success btn-accept pull-right">Zatwierdź</button>
+            <div class="col-xs-9 text-center color-place-container">
+                <div class="flex-test">
+                    <div class="color-place active" data-color></div>
+                    <div class="color-place active" data-color></div>
+                    <div class="color-place active" data-color></div>
+                    <div class="color-place active" data-color></div>
+                    <button class="btn btn-success btn-accept">Dalej</button>
+                </div>
              </div>
-             <div class="col-xs-4 answers-container"></div>
+             <div class="col-xs-3 answers-container"></div>
         `;
         return row;
     }
@@ -40,11 +42,11 @@ $(document).ready(function () {
         this.place3 = place3;
         this.place4 = place4;
 
-        let checkArr = [this.place1, this.place2, this.place3, this.place4];
-        let indexOfBlack = [];
-        let uniqueBlack = [];
-        let indexOfWhite = [];
-        let uniqueWhite = [];
+        const checkArr = [this.place1, this.place2, this.place3, this.place4];
+        const indexOfBlack = [];
+        const uniqueBlack = [];
+        const indexOfWhite = [];
+        const uniqueWhite = [];
 
         for (let i = 0; i < checkArr.length; i++) {
            if (checkArr[i] === this.copyComputerPick[i]) {
@@ -85,7 +87,7 @@ $(document).ready(function () {
 
     Compare.prototype.checkColor = function () {
         const answer = document.createElement('div');
-        answer.classList.add('answer', 'text-center');
+        answer.classList.add('answer');
         answer.innerHTML = `
             <div class="answers ${this.answer1}"></div>
             <div class="answers ${this.answer2}"></div>
@@ -101,7 +103,7 @@ $(document).ready(function () {
         const turn = document.querySelector('.counter').innerText;
         win.classList.add('text-center', 'you-win');
         win.innerHTML = `
-            Congratulations You are win in ${12 - turn} turn
+            Wygrałeś w ${12 - turn} turze
         `;
 
         return win;
@@ -204,9 +206,11 @@ $(document).ready(function () {
     function placeColor() {
         $('.color-place').click(function () {
             if ($(this).hasClass('active') && canClick) {
-                const colorPlaceHeight = $('.color-place').clientHeight;
-                const offsetTop = $(this)[0].offsetTop + $(this)[0].offsetParent.offsetTop + colorPlaceHeight;
+                const colorPlaceClientHeight = $('.cancel-pick').css('margin-left').replace('px', '');
+
+                const offsetTop = $(this)[0].offsetTop + $(this)[0].offsetParent.offsetTop + +colorPlaceClientHeight;
                 const offsetLeft = $(this)[0].offsetLeft + $(this)[0].offsetParent.offsetLeft;
+
 
                 canClick = false;
                 $(this).addClass('current-place-color');
