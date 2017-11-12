@@ -14,7 +14,7 @@ $(document).ready(function () {
         row.classList.add('row');
         row.innerHTML = `
             <div class="col-xs-9 text-center color-place-container">
-                <div class="flex-test">
+                <div class="color-flex-container">
                     <div class="color-place active" data-color></div>
                     <div class="color-place active" data-color></div>
                     <div class="color-place active" data-color></div>
@@ -98,15 +98,41 @@ $(document).ready(function () {
         return answer;
     };
 
+    //Object display when you win the game
     function CongratulationsYouWin () {
         const win = document.createElement('div');
         const turn = document.querySelector('.counter').innerText;
         win.classList.add('text-center', 'you-win');
         win.innerHTML = `
-            Wygrałeś w ${12 - turn} turze
+            <div>Wygrałeś w ${12 - turn} turze.</div>
+            <div class='game-over-flex'>
+                <div class='color-place' data-color='${computerColorPick[0]}'></div>
+                <div class='color-place' data-color='${computerColorPick[1]}'></div>
+                <div class='color-place' data-color='${computerColorPick[2]}'></div>
+                <div class='color-place' data-color='${computerColorPick[3]}'></div>
+            </div>
         `;
 
         return win;
+    }
+
+    //Object display when you lose the game
+    function YouLose () {
+        const lose = document.createElement('div');
+        lose.classList.add('text-center', 'you-lose')
+        lose.innerHTML = `
+            <div class='text-center'>
+                <div>Przegraleś prawidłowa odpowiedź to:</div>
+                <div class='game-over-flex'>
+                    <div class='color-place' data-color='${computerColorPick[0]}'></div>
+                    <div class='color-place' data-color='${computerColorPick[1]}'></div>
+                    <div class='color-place' data-color='${computerColorPick[2]}'></div>
+                    <div class='color-place' data-color='${computerColorPick[3]}'></div>
+                </div>
+            </div>
+        `;
+
+        return lose;
     }
 
 
@@ -193,8 +219,10 @@ $(document).ready(function () {
             }
 
             if ($counterValue < 2) {
+                const lose = new YouLose();
                 $gameContainer.children().remove();
                 $('.turn-left').css('opacity', 0);
+                $gameContainer.append(lose);
             }
     });
 

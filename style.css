@@ -26,6 +26,9 @@
   padding-top: 6px; }
   .game .row:last-of-type {
     padding-bottom: 132px; }
+    .game .row:last-of-type .col-xs-9 {
+      width: 100%;
+      border-right: none; }
 
 .color-place-container {
   border-right: 1px solid gray; }
@@ -96,7 +99,7 @@
   background: #000000; }
 
 [data-color="gray"] {
-  background: #444444; }
+  background: #ff9600; }
 
 .answers-container {
   display: flex;
@@ -129,22 +132,37 @@
 .black {
   background: black; }
 
-.you-win {
+.you-win, .you-lose {
   font-size: 40px;
+  color: blue; }
+
+.you-lose {
   color: red; }
 
-.flex-test {
+.game-over-flex {
   display: flex;
-  align-items: center; }
-  .flex-test .color-place:first-of-type {
-    margin-left: 40%; }
-    @media (max-width: 991px) {
-      .flex-test .color-place:first-of-type {
-        margin-left: 15%; } }
-    @media (max-width: 768px) {
-      .flex-test .color-place:first-of-type {
-        margin-left: 0; } }
-  .flex-test .btn-accept {
-    margin-left: 14px; }
+  justify-content: center; }
+
+.color-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  @media (min-width: 1200px) {
+    .color-flex-container {
+      margin-left: 450px; } }
+  @media (max-width: 1199px) {
+    .color-flex-container {
+      margin-left: 350px; } }
+  @media (max-width: 991px) {
+    .color-flex-container {
+      margin-left: 200px; } }
+  @media (max-width: 768px) {
+    .color-flex-container {
+      margin-left: 80px; } }
+  @media (max-width: 475px) {
+    .color-flex-container {
+      margin-left: 0; } }
+  .color-flex-container .btn-accept {
+    margin-left: 10px; }
 
 /*# sourceMappingURL=style.css.map */
