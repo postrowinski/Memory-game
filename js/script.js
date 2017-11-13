@@ -210,30 +210,26 @@ $(document).ready(function () {
 
             $('.answers-container').last().append(compare.checkColor());
 
+            win();
             $colorPlaceLastRow.removeClass('color-is-set');
             createNewTry = false;
-            $gameContainer.append(nextTry);
-            $(nextTry).css('display', 'none').fadeIn(600);
             $counter.text($counterValue - 1);
-            placeColor();
-            $(this).remove();
-            $colorPlaceLastRow.removeClass('active');
-            win();
-            if (youWin === 4) {
-                $gameContainer.children().remove();
+            if (youWin === 4 && $counterValue > 2) {
                 $('.turn-left').css('opacity', 0);
                 const youWin = new CongratulationsYouWin();
                 $($gameContainer).append(youWin);
+            } else if ($counterValue < 2) {
+                const lose = new YouLose();
+                $('.turn-left').css('opacity', 0);
+                $gameContainer.append(lose);
+            } else {
+                $gameContainer.append(nextTry);
             }
+            $(nextTry).css('display', 'none').fadeIn(600);
+            placeColor();
+            $(this).remove();
+            $colorPlaceLastRow.removeClass('active');
         }
-
-        if ($counterValue < 2) {
-            const lose = new YouLose();
-            $gameContainer.children().remove();
-            $('.turn-left').css('opacity', 0);
-            $gameContainer.append(lose);
-        }
-
         slideDown($slideDown);
     });
 
