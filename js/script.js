@@ -214,11 +214,11 @@ $(document).ready(function () {
             $colorPlaceLastRow.removeClass('color-is-set');
             createNewTry = false;
             $counter.text($counterValue - 1);
-            if (youWin === 4 && $counterValue > 2) {
+            if (youWin === 4) {
                 $('.turn-left').css('opacity', 0);
                 const youWin = new CongratulationsYouWin();
                 $($gameContainer).append(youWin);
-            } else if ($counterValue < 2) {
+            } else if ($counterValue < 1) {
                 const lose = new YouLose();
                 $('.turn-left').css('opacity', 0);
                 $gameContainer.append(lose);
