@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    let canClick = true;
     let createNewTry = false;
     let computerColorPick;
     let youWin;
@@ -165,7 +164,7 @@ $(document).ready(function () {
         return computerColorPick;
     }
 
-    //Button New game:
+    //Button New game 'Nowa Gra':
     // - Remove all existing Try
     // - Randomize new color stuck
     // - Add first Try to Start new game
@@ -176,10 +175,11 @@ $(document).ready(function () {
         randomColorNoRepeat();
         placeColor();
         $counter.text('12');
+        $('.pick-color-container').css('display', 'none');
         $('.turn-left').css('opacity', 1);
     });
 
-    // Click button to accept turn 'Zatwierdź':
+    // Click button to accept turn 'Dalej':
     // - Can be click when you pick all colors
     // - Click remove button from current Try
     // - Click add new Try and remove active for all prev
@@ -189,41 +189,42 @@ $(document).ready(function () {
         const $counterValue = +$counter.text();
         const $colorPlaceLastRow = $('.game').find('.row').last().find('.color-place');
 
+        pickColor();
         placeColor();
         checkClickConfirm();
-            if (createNewTry) {
-                youWin = 0;
-                const place1 = $colorPlaceLastRow.first().data('color');
-                const place2 = $colorPlaceLastRow.first().next().data('color');
-                const place3 = $colorPlaceLastRow.last().prev().data('color');
-                const place4 = $colorPlaceLastRow.last().data('color');
-                const compare = new Compare(place1, place2, place3, place4);
+        if (createNewTry) {
+            youWin = 0;
+            const place1 = $colorPlaceLastRow.first().data('color');
+            const place2 = $colorPlaceLastRow.first().next().data('color');
+            const place3 = $colorPlaceLastRow.last().prev().data('color');
+            const place4 = $colorPlaceLastRow.last().data('color');
+            const compare = new Compare(place1, place2, place3, place4);
 
-                $('.answers-container').last().append(compare.checkColor());
+            $('.answers-container').last().append(compare.checkColor());
 
-                $colorPlaceLastRow.removeClass('color-is-set');
-                createNewTry = false;
-                $gameContainer.append(nextTry);
-                $(nextTry).css('display', 'none').fadeIn(600);
-                $counter.text($counterValue - 1);
-                placeColor();
-                $(this).remove();
-                $colorPlaceLastRow.removeClass('active');
-                win();
-                if (youWin === 4) {
-                    $gameContainer.children().remove();
-                    $('.turn-left').css('opacity', 0);
-                    const youWin = new CongratulationsYouWin();
-                    $($gameContainer).append(youWin);
-                }
-            }
-
-            if ($counterValue < 2) {
-                const lose = new YouLose();
+            $colorPlaceLastRow.removeClass('color-is-set');
+            createNewTry = false;
+            $gameContainer.append(nextTry);
+            $(nextTry).css('display', 'none').fadeIn(600);
+            $counter.text($counterValue - 1);
+            placeColor();
+            $(this).remove();
+            $colorPlaceLastRow.removeClass('active');
+            win();
+            if (youWin === 4) {
                 $gameContainer.children().remove();
                 $('.turn-left').css('opacity', 0);
-                $gameContainer.append(lose);
+                const youWin = new CongratulationsYouWin();
+                $($gameContainer).append(youWin);
             }
+        }
+
+        if ($counterValue < 2) {
+            const lose = new YouLose();
+            $gameContainer.children().remove();
+            $('.turn-left').css('opacity', 0);
+            $gameContainer.append(lose);
+        }
     });
 
     // Place color
@@ -233,15 +234,17 @@ $(document).ready(function () {
     // - Add class current-place-color to know which one is currently active to place color
     function placeColor() {
         $('.color-place').click(function () {
-            if ($(this).hasClass('active') && canClick) {
-                const colorPlaceClientHeight = $('.cancel-pick').css('margin-left').replace('px', '');
+            if ($(this).hasClass('active')) {
+                const $singleColorPlace = $('.color-place.active').first();
+                const colorPlaceClientHeight = $singleColorPlace.css('height').replace('px' , '');
+                const colorPlaceClientMargin = $singleColorPlace.css('margin-right').replace('px' , '');
+                const colorPlaceRealHeight = +colorPlaceClientHeight + +colorPlaceClientMargin;
 
-                const offsetTop = $(this)[0].offsetTop + $(this)[0].offsetParent.offsetTop + +colorPlaceClientHeight;
+                const offsetTop = $(this)[0].offsetTop + $(this)[0].offsetParent.offsetTop + colorPlaceRealHeight;
                 const offsetLeft = $(this)[0].offsetLeft + $(this)[0].offsetParent.offsetLeft;
-
-
-                canClick = false;
+                $('.color-place').removeClass('current-place-color');
                 $(this).addClass('current-place-color');
+
                 $pickColorContainer.css({'top': offsetTop, 'left': offsetLeft});
                 $pickColorContainer.addClass('active').slideDown(400);
             }
@@ -252,17 +255,19 @@ $(document).ready(function () {
     // - Click get data-color from current clicked color
     // - Set to current-place-color class background color from creating const before getData
     // - Remove class current-place-color
-    $('.picked-color').click(function () {
-        const getData = $(this).data('color');
+    function pickColor () {
+        $('.picked-color').click(function () {
+            const getData = $(this).data('color');
 
-        $('.current-place-color').attr('data-color', getData);
-        if ($('.current-place-color').attr('data-color') !== '') {
-            $('.current-place-color').addClass('color-is-set')
-        } else {
-            $('.current-place-color').removeClass('color-is-set');
-        }
-        $('.color-place').removeClass('current-place-color');
-        $pickColorContainer.removeClass('active').slideUp(400);
-        canClick = true;
-    });
+            $('.current-place-color').attr('data-color', getData);
+            if ($('.current-place-color').attr('data-color') !== '') {
+                $('.current-place-color').addClass('color-is-set')
+            } else {
+                $('.current-place-color').removeClass('color-is-set');
+            }
+            $('.color-place').removeClass('current-place-color');
+            $pickColorContainer.removeClass('active').slideUp(400);
+        });
+    }
+    pickColor();
 });

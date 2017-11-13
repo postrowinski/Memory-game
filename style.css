@@ -8,18 +8,29 @@
   clear: both; }
 
 /* Hero */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 24px; } }
+
 .hero .hero-flex {
   display: flex;
   justify-content: space-around; }
-
-.turn-left {
-  opacity: 0;
-  line-height: 47px;
-  font-size: 32px; }
-  .turn-left .counter {
-    display: inline-block;
-    width: 60px;
-    text-align: center; }
+  .hero .hero-flex .turn-left {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    line-height: 47px;
+    font-size: 32px; }
+    .hero .hero-flex .turn-left .counter {
+      display: inline-flex;
+      width: 40px;
+      justify-content: flex-end; }
+  .hero .hero-flex .btn {
+    margin-top: 6px; }
+  @media (max-width: 768px) {
+    .hero .hero-flex {
+      flex-direction: column;
+      align-items: center; } }
 
 /* GAME */
 .game .row {
@@ -79,6 +90,28 @@
       top: 31px;
       transform: rotate(-45deg); }
 
+.color-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  @media (min-width: 1200px) {
+    .color-flex-container {
+      margin-left: 450px; } }
+  @media (max-width: 1199px) {
+    .color-flex-container {
+      margin-left: 350px; } }
+  @media (max-width: 991px) {
+    .color-flex-container {
+      margin-left: 200px; } }
+  @media (max-width: 768px) {
+    .color-flex-container {
+      margin-left: 80px; } }
+  @media (max-width: 475px) {
+    .color-flex-container {
+      margin-left: 0; } }
+  .color-flex-container .btn-accept {
+    margin-left: 10px; }
+
 .btn-accept {
   height: 40px; }
 
@@ -101,6 +134,7 @@
 [data-color="orange"] {
   background: #ff9600; }
 
+/* ANSWERS */
 .answers-container {
   display: flex;
   align-items: center;
@@ -142,27 +176,5 @@
 .game-over-flex {
   display: flex;
   justify-content: center; }
-
-.color-flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; }
-  @media (min-width: 1200px) {
-    .color-flex-container {
-      margin-left: 450px; } }
-  @media (max-width: 1199px) {
-    .color-flex-container {
-      margin-left: 350px; } }
-  @media (max-width: 991px) {
-    .color-flex-container {
-      margin-left: 200px; } }
-  @media (max-width: 768px) {
-    .color-flex-container {
-      margin-left: 80px; } }
-  @media (max-width: 475px) {
-    .color-flex-container {
-      margin-left: 0; } }
-  .color-flex-container .btn-accept {
-    margin-left: 10px; }
 
 /*# sourceMappingURL=style.css.map */
