@@ -3,6 +3,7 @@ $(document).ready(function () {
     let computerColorPick;
     let youWin;
 
+    const $instructionPosition = $('.instruction-position');
     const $gameContainer = $('.game').find('.container');
     const $counter = $('.counter');
     const $pickColorContainer = $('.pick-color-container');
@@ -143,6 +144,12 @@ $(document).ready(function () {
         });
     }
 
+    function slideDown(top) {
+        $('html, body').animate({
+            scrollTop: top
+        }, 300);
+    }
+
     //Function which doesn't allow to click button 'Zatwierdź' until player don't set all color in row
     function checkClickConfirm() {
         if ($('.color-is-set').length === 4 && (!$('.pick-color-container').hasClass('active'))) {
@@ -188,6 +195,7 @@ $(document).ready(function () {
         const nextTry = new Try();
         const $counterValue = +$counter.text();
         const $colorPlaceLastRow = $('.game').find('.row').last().find('.color-place');
+        const $slideDown = $(this).offset().top;
 
         pickColor();
         placeColor();
@@ -225,6 +233,8 @@ $(document).ready(function () {
             $('.turn-left').css('opacity', 0);
             $gameContainer.append(lose);
         }
+
+        slideDown($slideDown);
     });
 
     // Place color
@@ -270,4 +280,14 @@ $(document).ready(function () {
         });
     }
     pickColor();
+
+    //Instructions
+    // - Toggle hide and show after click button 'instrukcja'
+    $('.hero').on('click', '.btn-warning', function () {
+        const absoluteLeft = $instructionPosition.offset().left;
+        const absoluteTop = $instructionPosition[0].clientHeight;
+
+        $('.instruction').css({'top': absoluteTop, 'left': absoluteLeft, 'min-height': `calc(100vh - ${absoluteTop}px - 15px)`});
+        $('.instruction').fadeToggle(300);
+    });
 });

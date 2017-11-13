@@ -7,6 +7,9 @@
   display: table;
   clear: both; }
 
+body {
+  position: relative; }
+
 /* Hero */
 @media (max-width: 768px) {
   .hero h1 {
@@ -126,7 +129,7 @@
   background: #0000ff; }
 
 [data-color="yellow"] {
-  background: #ffff13; }
+  background: #fffa04; }
 
 [data-color="purple"] {
   background: #800080; }
@@ -176,5 +179,17 @@
 .game-over-flex {
   display: flex;
   justify-content: center; }
+
+/* INSTRUCTION */
+.instruction {
+  position: absolute;
+  display: none;
+  background: #fff;
+  z-index: 1; }
+  .instruction span {
+    display: inline-block;
+    padding: 2px 5px;
+    color: #fff;
+    text-shadow: 1px 1px 0px black; }
 
 /*# sourceMappingURL=style.css.map */

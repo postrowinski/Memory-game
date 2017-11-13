@@ -16,10 +16,19 @@
 </head>
 
 <body>
+    <div class="instruction">
+        <div class="container text-center">
+            <p>Komputer losuje z sześciu możliwych kolorów: <span data-color="red">czerwonego</span>, <span data-color="blue">niebieskiego</span>, <span data-color="green">zielonego</span>, <span data-color="yellow">żółtego</span>, <span data-color="purple">fioletowego</span> i <span data-color="orange">pomarańczowego</span> cztery kolory bez powtórzeń</p>
+            <p>Twoim zadaniem jest odgadnać nie tylko kolory jakie wybrał komputer, ale również ich właściwą kolejność</p>
+            <p>Po każdej rundzie komputer informuję Cię o twojej skuteczności w odgadnięciu hasła ustawiająć pchełki po prawej stronie od rozwiązania.</p>
+            <p>Czarna pchełka po prawej stronie od rozwiązania informuję o tym, że któryś z twoich wybranych kolorów jest na swoim miejscu</p>
+            <p>Białą pchełka informuję o tym, że któryś z kolorów jest w póli wybranej przez komputer, ale nie jest na właściwym miejscu</p>
+        </div>
+    </div>
     <section class="hero">
-        <div class="container">
+        <div class="container instruction-position">
             <h1 class="text-center hidden-xs">MasterMind</h1>
-            <hr class="hidden-xs">
+            <hr class="hidden-xs ">
             <div class="hero-flex">
                 <button class="btn btn-warning btn-lg">Instrukcja</button>
                 <button class="btn btn-primary btn-lg">Nowa gra</button>
@@ -40,11 +49,6 @@
             <div class="picked-color" data-color="yellow"></div>
             <div class="picked-color" data-color="purple"></div>
             <div class="picked-color" data-color="orange"></div>
-            <!--<div class="clean-fix"></div>-->
-            <!--<div class="picked-color cancel-pick" data-color="">-->
-                <!--<span class="cross top"></span>-->
-                <!--<span class="cross bottom"></span>-->
-            <!--</div>-->
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
