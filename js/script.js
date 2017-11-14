@@ -184,6 +184,7 @@ $(document).ready(function () {
         $counter.text('12');
         $('.pick-color-container').css('display', 'none');
         $('.turn-left').css('opacity', 1);
+        $('.instruction').fadeOut(300);
     });
 
     // Click button to accept turn 'Dalej':
@@ -218,7 +219,7 @@ $(document).ready(function () {
                 $('.turn-left').css('opacity', 0);
                 const youWin = new CongratulationsYouWin();
                 $($gameContainer).append(youWin);
-            } else if ($counterValue < 1) {
+            } else if ($counterValue < 2) {
                 const lose = new YouLose();
                 $('.turn-left').css('opacity', 0);
                 $gameContainer.append(lose);
